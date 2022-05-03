@@ -28,14 +28,14 @@ const changeColor = function() {
     this.style.backgroundColor = "blue"; //turns 'this' element blue
 };
 
+const defaultColor = function() {
+    this.style.removeProperty("background-color"); //turns 'this' element blue
+};
+
 for (let i = 0; i < boxes.length; i++) {
-    boxes[i].addEventListener('click', changeColor); //iterates through box 'array' adding event to each
+    boxes[i].addEventListener('mouseover', changeColor); //iterates through box 'array' adding event to each
+    boxes[i].addEventListener('mouseout', defaultColor);
 }
 
 
 
-    //Grid Creator
-
-    const makeGrid = () => {
-        //just some code
-    }
