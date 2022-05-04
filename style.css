@@ -1,31 +1,7 @@
 
-
-/*box styling*/
-
-#boxParent {
-    margin: auto;
-    width: 50%;
-    border: 3px solid green;
-    padding: 10px;
-}
-
-.box {
-    background: #9E9E9E;
-    border: black 1px solid;
-    width: 25px;
-    height: 25px;
-    margin: 0 auto;
-    margin-top: 0;
-    cursor: pointer;
-    float: left;
-}
-
-.row {
-    display: block;
-    float:left;
-    width:100%;
-}
-
-#main {
-    border: 2px blue solid;
+.board{
+    width: 600px;
+    height: 600px;
+    display: grid;
+    border: solid black 1px;
 }

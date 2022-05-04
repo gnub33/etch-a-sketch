@@ -1,41 +1,32 @@
 
 
 
-//Color Change function
+function populateBoard(size) { //creates the grid 
+    let board = document.querySelector(".board"); //reference to board container div
+    let squares = board.querySelectorAll("div") 
+    squares.forEach((div) => div.remove()); //resets board for new size input
+    board.style.gridTemplateColumns = `repeat(${size} , 1fr)`; //creates x amount of columns, each one will have width of 1/16th 
+    board.style.gridTemplateRows = `repeat(${size} , 1fr)`;
 
-
-//Grid Container Set Up
-
-for (var i = 0; i < 16; i++) {
-        var row = document.createElement('div');
-        row.className = "row";
-        for (let j = 0; j < 16; j++) {
-            let box = document.createElement('div');
-            box.className = "box";
-            row.appendChild(box);
-            let boxNumber = [i]+[j];
-            box.setAttribute('id',boxNumber)
-        }                
-        document.getElementById('boxParent').appendChild(row);
+    let amount = size * size; //is total amount of squares within grid
+    for (let i = 0; i < amount; i++) {
+        let square = document.createElement("div"); //creates square
+        square.addEventListener('mouseover', colorSquare)
+        square.style.backgroundColor = "white";
+        board.insertAdjacentElement("beforeend", square); //adds squares to board
+    }
 }
 
+populateBoard(16); //runs by default. if omitted,  nothing happens until new input is entered
 
-//Add click event listener to change box color
-
-const boxes = document.getElementsByClassName("box"); //returns an array-like object
-
-const changeColor = function() {
-    this.style.backgroundColor = "blue"; //turns 'this' element blue
-};
-
-const defaultColor = function() {
-    this.style.removeProperty("background-color"); //turns 'this' element blue
-};
-
-for (let i = 0; i < boxes.length; i++) {
-    boxes[i].addEventListener('mouseover', changeColor); //iterates through box 'array' adding event to each
-    boxes[i].addEventListener('mouseout', defaultColor);
+function changeSize(input) {
+    if(input >=2 && input <= 100) {
+        populateBoard(input);
+    } else {
+        console.log("too many squares");
+    }
 }
 
-
-
+function colorSquare() {
+    this.style.backgroundColor = 'black';
+}

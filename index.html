@@ -5,15 +5,35 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Etch-A-Sketch</title>
+    <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="style.css">
+    
 </head>
 <body>
 
     <div id="main">
-         <div id="controls">
-            <button onclick="makeGrid();">Make A New Grid</button>
+        <div>
+            <h1>Etch-A-Sketch</h1>
+        </div>
+        <div class="content">
+            <div class="board"></div>
+            <div class="controls">
+                <button onclick="makeGrid();">New Grid</button>
+                <button>Black</button>
+                <button>Erase</button>
+                <button>Random</button>
+                <button>Reset</button>
          </div>
-         <div id="boxParent"> Why Though</div>
+         <div>
+             <input type="text" placeholder="Size of Board" value="16" onchange="changeSize(this.value)">
+             <!-- onchange -> runs function when new input is entered -->
+             <!-- placeholder is a short hint for expected value -->
+             <button>Set Size</button>
+         </div>
+        </div>
+        
+         
+         
     </div>
     
 </body>
