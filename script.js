@@ -1,4 +1,4 @@
-
+let color = "black";
 
 
 function populateBoard(size) { //creates the grid 
@@ -28,5 +28,9 @@ function changeSize(input) {
 }
 
 function colorSquare() {
-    this.style.backgroundColor = 'black';
+    this.style.backgroundColor = color;
+}
+
+function changeColor(choice) {
+    color = choice;
 }
