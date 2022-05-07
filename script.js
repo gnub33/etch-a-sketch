@@ -1,4 +1,5 @@
 let color = "black";
+let click = true;
 
 
 function populateBoard(size) { //creates the grid 
@@ -21,17 +22,20 @@ populateBoard(16); //runs by default. if omitted,  nothing happens until new inp
 
 function changeSize(input) {
     if(input >=2 && input <= 100) {
+        document.querySelector('.error').style.display = 'none';
         populateBoard(input);
     } else {
-        console.log("too many squares");
+        document.querySelector('.error').style.display = 'flex';
     }
 }
 
 function colorSquare() {
-    if(color === 'random') {
-        this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
-    } else {
-        this.style.backgroundColor = color;
+    if(click) {
+        if(color === 'random') {
+            this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+        } else {
+            this.style.backgroundColor = color;
+        }
     }
 }
 
@@ -44,3 +48,14 @@ function resetBoard() {
     let squares = board.querySelectorAll("div") 
     squares.forEach((div) => div.style.backgroundColor = 'white'); 
 }
+
+document.querySelector('body').addEventListener('click', (e) => {// coloring mode function
+    if(e.target.tagName != 'BUTTON') { //Now clicking a button will not effect coloring mode
+        click = !click; //re-assign value of click to be false
+        if(click) {
+            document.querySelector('.mode').textContent = "Mode: Coloring"
+        } else {
+            document.querySelector('.mode').textContent = "Mode: Not Coloring"
+        }
+    }
+})

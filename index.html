@@ -11,17 +11,16 @@
 </head>
 <body>
 
-    <div id="main">
-        <div>
-            <h1>Etch-A-Sketch</h1>
-        </div>
+    <div class="main">
+        <div><h1>Etch-A-Sketch</h1></div>
+        <div class="mode">Mode: Coloring</div>
         <div class="content">
             <div class="board"></div>
             <div class="controls">
-                <button onclick="changeColor('black')">Black</button>
-                <button onclick="changeColor('white')">Eraser</button>
-                <button onclick="changeColor('grey')">Grey</button>
-                <button onclick="changeColor('random')">Random</button>
+                <button class="blackButton" onclick="changeColor('black')">Black</button>
+                <button class="eraserButton" onclick="changeColor('white')">Eraser</button>
+                <button class="grayButton" onclick="changeColor('grey')">Grey</button>
+                <button class="randomButton" onclick="changeColor('random')">Random</button>
                 <button onclick="resetBoard()">Reset</button>
          </div>
          <div>
@@ -29,6 +28,9 @@
              <!-- onchange -> runs function when new input is entered -->
              <!-- placeholder is a short hint for expected value -->
              <button>Set Size</button>
+         </div>
+         <div class="error">
+             Input must be between 2 and 100
          </div>
         </div>
         
