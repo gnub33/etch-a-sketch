@@ -11,32 +11,28 @@
 </head>
 <body>
 
-    <div class="main">
-        <div><h1>Etch-A-Sketch</h1></div>
-        <div class="mode">Mode: Coloring</div>
-        <div class="content">
-            <div class="board"></div>
-            <div class="controls">
-                <button class="blackButton" onclick="changeColor('black')">Black</button>
-                <button class="eraserButton" onclick="changeColor('white')">Eraser</button>
-                <button class="grayButton" onclick="changeColor('grey')">Grey</button>
-                <button class="randomButton" onclick="changeColor('random')">Random</button>
-                <button onclick="resetBoard()">Reset</button>
-         </div>
-         <div>
-             <input type="text" placeholder="Size of Board" value="16" onchange="changeSize(this.value)">
-             <!-- onchange -> runs function when new input is entered -->
-             <!-- placeholder is a short hint for expected value -->
-             <button>Set Size</button>
-         </div>
-         <div class="error">
-             Input must be between 2 and 100
-         </div>
+    <div class='banner'>
+        <h1>Etch A Sketch</h1q>
+      </div>
+      
+      <div class='main'>
+        <p></p>
+        <div class='controls'>
+            <div>
+                <input type="color" id="color-btn" name="color-btn" value="#000">
+                <label for="color-btn">pen color</label>
+            </div>
+            <button class="eraser-btn">eraser</button>
+            <div class='slider-box'>
+            <input id='slider' class="pie" type="range" id='grid-size' name='grid-size' value='16' min='1' max='60' onchange='rangeSliderValue(this.value)'>
+            <label for="grid-size"></label>
+            </div>
+            <p id= 'grid-size-display'>grid size: 16x16</p>
+            <button class="grid-lines-btn">toggle grid lines</button>
+            <button class ='clear-btn'>CLEAR</button>
         </div>
-        
-         
-         
-    </div>
+        <div class='board'></div>
+      </div>
     
 </body>
 

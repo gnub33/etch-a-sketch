@@ -1,61 +1,118 @@
-let color = "black";
-let click = true;
 
+let color = 'black';
 
-function populateBoard(size) { //creates the grid 
-    let board = document.querySelector(".board"); //reference to board container div
-    let squares = board.querySelectorAll("div") 
-    squares.forEach((div) => div.remove()); //resets board for new size input
-    board.style.gridTemplateColumns = `repeat(${size} , 1fr)`; //creates x amount of columns, each one will have width of 1/16th 
-    board.style.gridTemplateRows = `repeat(${size} , 1fr)`;
-
-    let amount = size * size; //is total amount of squares within grid
-    for (let i = 0; i < amount; i++) {
-        let square = document.createElement("div"); //creates square
-        square.addEventListener('mouseover', colorSquare)
-        square.style.backgroundColor = "white";
-        board.insertAdjacentElement("beforeend", square); //adds squares to board
-    }
+//detects mouse state
+let mouseDown = false;
+document.body.onmousedown = () => {
+    mouseDown = true;
+}
+document.body.onmouseup = () => {
+    mouseDown = false;
 }
 
-populateBoard(16); //runs by default. if omitted,  nothing happens until new input is entered
 
-function changeSize(input) {
-    if(input >=2 && input <= 100) {
-        document.querySelector('.error').style.display = 'none';
-        populateBoard(input);
-    } else {
-        document.querySelector('.error').style.display = 'flex';
+function populateDefaultBoard(size) {
+    let board = document.querySelector('.board');
+    let squares = board.querySelectorAll('div')
+    squares.forEach((div)=>div.remove());
+    board.style.gridTemplateColumns = `repeat(${size},1fr)`;
+    board.style.gridTemplateRows = `repeat(${size},1fr)`;
+
+    let amount = size*size;
+    for(let i=0; i < amount; i++) {
+        let square = document.createElement('div');
+        square.style.border = 'black solid .5px';
+        square.addEventListener('mousedown', draw)
+        square.addEventListener('mouseover', drag)
+        board.insertAdjacentElement('afterbegin', square);
     }
+ 
 }
 
-function colorSquare() {
-    if(click) {
-        if(color === 'random') {
-            this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
-        } else {
-            this.style.backgroundColor = color;
+populateDefaultBoard(16)
+
+
+function rangeSliderValue(value) {
+
+    function populateBoard() {
+        let size = parseInt(value);
+        //console.log(value)
+        let board = document.querySelector('.board');
+        let squares = board.querySelectorAll('div')
+        squares.forEach((div)=>div.remove());
+        board.style.gridTemplateColumns = `repeat(${size},1fr)`;
+        board.style.gridTemplateRows = `repeat(${size},1fr)`;
+
+        let amount = size*size;
+        for(let i=0; i < amount; i++) {
+            let square = document.createElement('div');
+            square.style.border = 'black solid .5px';
+            square.addEventListener('mousedown', draw)
+            square.addEventListener('mouseover', drag)
+
+            board.insertAdjacentElement('afterbegin', square);
         }
+
+        let gridSizeDisplay = document.getElementById('grid-size-display');
+        gridSizeDisplay.innerHTML = `grid size: ${size}x${size}`;
+     
+    }
+    //clearBoard()
+    populateBoard();
+
+}
+
+
+function draw() {
+    //basic pen function
+    this.style.backgroundColor = color;
+}
+
+//eraser tool
+let eraser = document.querySelector('.eraser-btn');
+eraser.addEventListener('click', eraserTool);
+function eraserTool() {
+    color = 'white';
+}
+
+//choose a color to draw with
+let colorButton = document.querySelector('#color-btn')
+colorButton.addEventListener('change', chooseColor)
+function chooseColor() {
+    color = this.value
+}
+
+function drag() {
+    //when mouse is down
+    if(mouseDown){
+        this.style.backgroundColor = color;
+    } else{
+        //do nothing
     }
 }
 
-function changeColor(choice) {
-    color = choice;
+//turns all square back to white
+function clearBoard() {
+    let board = document.querySelector('.board');
+    let squares = board.querySelectorAll('div')
+    squares.forEach((div)=>div.style.backgroundColor='white');
 }
+let clearBtn = document.querySelector('.clear-btn');
+clearBtn.addEventListener('click', clearBoard)
 
-function resetBoard() {
-    let board = document.querySelector(".board"); 
-    let squares = board.querySelectorAll("div") 
-    squares.forEach((div) => div.style.backgroundColor = 'white'); 
-}
-
-document.querySelector('body').addEventListener('click', (e) => {// coloring mode function
-    if(e.target.tagName != 'BUTTON') { //Now clicking a button will not effect coloring mode
-        click = !click; //re-assign value of click to be false
-        if(click) {
-            document.querySelector('.mode').textContent = "Mode: Coloring"
-        } else {
-            document.querySelector('.mode').textContent = "Mode: Not Coloring"
-        }
+//turns off grid lines
+function gridLinesToggle() {
+    let board = document.querySelector('.board');
+    let squares = board.querySelectorAll('div')
+    //fire fox uses 'medium none'??
+    if(squares[0].style.border=='medium none' || squares[0].style.border=='none') { 
+        squares.forEach((div)=>div.style.border='black solid .5px');
+    }else {
+        squares.forEach((div)=>div.style.border='none');
     }
-})
+    
+};
+let gridButton = document.querySelector('.grid-lines-btn');
+gridButton.addEventListener('click', gridLinesToggle);
+
+
