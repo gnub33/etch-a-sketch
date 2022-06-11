@@ -6,11 +6,12 @@ This Project is a browser-based attempt to create something between an etch-a-sk
 
 Skills Demonstrated:
 -DOM Manipulation
+-HTML Forms
 -CSS Grid
 
-I attempted this solution on my own up to a point then saved them in scratch files. I attempted this a second time in a separate branch, however I was unable to achieve the correct button functionality.
-I'm do not like the 'mouseover' event used to draw on the board. I'd prefer the precision of a 'click' event.
-One feature I'd like to add is a button that opens a color wheel so that the user may select a color.
+The slider function was the hardest feature to implement. I found a solution but the readibility of my code suffers from it.
+The preview shows different background colors then what the link has. An error occured on my last 'push'.
+I hope to implment a 'fill' function in the feature and make changes to the overall design.
 
 Live Demo: https://gnub33.github.io/etch-a-sketch/
 
