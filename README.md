@@ -16,3 +16,5 @@ Live Demo: https://gnub33.github.io/etch-a-sketch/
 
 Video Solution I Used:
 https://www.youtube.com/watch?v=dyhuaXeuyGo&ab_channel=CodingWithRob
+
+<img width="1403" alt="image" src="https://user-images.githubusercontent.com/47507141/173205177-5f616820-4a41-49ed-97f4-84302e47a089.png">
